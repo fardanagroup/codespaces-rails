@@ -26,7 +26,3 @@ jobs:
           ruby-version: "3.4"
           bundler-cache: true
 
-      - name: Set up database
-        run: bin/rails db:schema:load
-        env:
-          RAILS_ENV: development
