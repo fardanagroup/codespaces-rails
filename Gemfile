@@ -27,6 +27,9 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+# Official Anthropic SDK for calling the Claude Messages API [https://github.com/anthropics/anthropic-sdk-ruby]
+gem "anthropic", "~> 1.16.3"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
