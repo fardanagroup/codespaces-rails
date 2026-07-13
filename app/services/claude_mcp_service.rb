@@ -43,6 +43,8 @@ class ClaudeMcpService
     allowed_tools: nil,
     model: DEFAULT_MODEL
   )
+    raise ArgumentError, "ANTHROPIC_API_KEY is not configured" if api_key.to_s.empty?
+
     @client = Anthropic::Client.new(api_key: api_key)
     @server_url = server_url
     @server_token = server_token

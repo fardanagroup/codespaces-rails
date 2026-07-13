@@ -49,4 +49,12 @@ class ClaudeMcpServiceTest < ActiveSupport::TestCase
     service = ClaudeMcpService.new(api_key: "test-key", server_url: nil)
     assert_raises(ArgumentError) { service.call("hi") }
   end
+
+  test "initialize raises a clear error when the api key is missing" do
+    assert_raises(ArgumentError) { ClaudeMcpService.new(api_key: nil, server_url: "https://mcp.example/sse") }
+  end
+
+  test "initialize raises a clear error when the api key is blank" do
+    assert_raises(ArgumentError) { ClaudeMcpService.new(api_key: "", server_url: "https://mcp.example/sse") }
+  end
 end
