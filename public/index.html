@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- ============================================================
+       SEO DASAR — WAJIB DIISI (situs lama Anda kosong di bagian ini)
+       ============================================================ -->
+  <title>Fardana Group — Ekspedisi Kendaraan & Alat Berat ke Papua | Surabaya</title>
+  <meta name="description" content="PT Fardana Berlian Papua (Fardana Group), spesialis pengiriman kendaraan, alat berat, dan kargo ke seluruh Indonesia lewat jalur darat & laut. Berbasis di Surabaya." />
+
+  <!-- Font industrial (Barlow) — mengesankan dunia transport/infrastruktur -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       DESIGN TOKENS — ubah warna cukup di sini, semua ikut berubah
+       ------------------------------------------------------------
+       Navy laut  = kepercayaan & jalur laut
+       Amber hi-vis = warna keselamatan alat berat (bukan sekadar hiasan)
+       ============================================================ */
+    :root{
+      --navy:      #0A2540;   /* warna utama / latar header  */
+      --navy-700:  #123B63;   /* navy lebih terang (gradien) */
+      --amber:     #F6A821;   /* aksen & tombol utama (CTA)  */
+      --amber-600: #E0940F;
+      --ink:       #0E1621;   /* teks gelap                  */
+      --mist:      #F3F6FA;   /* permukaan terang            */
+      --line:      rgba(255,255,255,.14);
+      --line-dark: rgba(10,37,64,.1);
+      --radius:    12px;
+      --wrap:      1180px;    /* lebar konten maksimal        */
+    }
+
+    *,*::before,*::after{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family:"Barlow",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+      color:var(--ink);
+      background:#fff;
+      -webkit-font-smoothing:antialiased;
+    }
+    a{ text-decoration:none; color:inherit; }
+    img{ max-width:100%; display:block; }
+
+    /* Fokus keyboard tetap terlihat (aksesibilitas) */
+    a:focus-visible, button:focus-visible{
+      outline:3px solid var(--amber);
+      outline-offset:3px;
+      border-radius:6px;
+    }
+
+    .wrap{ width:min(var(--wrap), 92%); margin-inline:auto; }
+
+    section{ scroll-margin-top:88px; }
+
+    .kicker{
+      font-family:"Barlow Condensed",sans-serif;
+      font-weight:600; letter-spacing:2px; text-transform:uppercase;
+      font-size:13px; color:var(--amber-600); margin:0 0 10px;
+    }
+    .section-head{ max-width:640px; margin-bottom:44px; }
+    .section-head h2{
+      font-family:"Barlow Condensed",sans-serif;
+      font-weight:700; text-transform:uppercase;
+      font-size:clamp(28px,4vw,42px); line-height:1.02;
+      margin:0 0 14px; color:var(--navy);
+    }
+    .section-head p{ font-size:16px; line-height:1.65; color:#3E4A59; margin:0; }
+
+    /* =======================  HEADER  ======================= */
+    .site-header{
+      position:sticky; top:0; z-index:50;
+      background:var(--navy);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      display:flex; align-items:center; gap:32px;
+      height:72px;
+    }
+    /* Logotype (ganti dengan <img src="logo.png"> milik Anda) */
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      color:#fff; font-family:"Barlow Condensed",sans-serif;
+      font-weight:700; font-size:24px; letter-spacing:.5px;
+      text-transform:uppercase; line-height:1;
+    }
+    .brand .mark{
+      width:34px; height:34px; border-radius:8px;
+      background:linear-gradient(135deg,var(--amber),var(--amber-600));
+      display:grid; place-items:center;
+      color:var(--navy); font-weight:700; font-size:18px;
+    }
+    .brand small{
+      display:block; font-family:"Barlow",sans-serif;
+      font-weight:500; font-size:11px; letter-spacing:2px;
+      color:#9FB4CC; text-transform:uppercase;
+    }
+
+    .menu{ display:flex; gap:26px; margin-left:auto; }
+    .menu a{
+      color:#CFDBEA; font-weight:500; font-size:15px;
+      padding:6px 0; position:relative;
+    }
+    .menu a:hover{ color:#fff; }
+    .menu a::after{
+      content:""; position:absolute; left:0; bottom:-4px;
+      width:0; height:2px; background:var(--amber);
+      transition:width .25s ease;
+    }
+    .menu a:hover::after{ width:100%; }
+
+    /* Tombol WhatsApp di header */
+    .btn-wa{
+      display:inline-flex; align-items:center; gap:8px;
+      background:var(--amber); color:var(--navy);
+      font-weight:600; font-size:15px;
+      padding:10px 18px; border-radius:var(--radius);
+      transition:transform .15s ease, background .2s ease;
+      white-space:nowrap;
+    }
+    .btn-wa:hover{ background:#FFB733; transform:translateY(-1px); }
+
+    /* Tombol menu mobile (hamburger) */
+    .burger{
+      display:none; margin-left:auto;
+      background:none; border:0; cursor:pointer; padding:8px;
+    }
+    .burger span{ display:block; width:26px; height:2px; background:#fff; margin:5px 0; }
+
+    /* Panel menu mobile */
+    .mobile-panel{
+      display:none;
+      background:var(--navy-700);
+      border-top:1px solid var(--line);
+    }
+    .mobile-panel.open{ display:block; }
+    .mobile-panel .wrap{ padding:18px 0; display:flex; flex-direction:column; gap:4px; }
+    .mobile-panel a{
+      color:#E7EEF6; font-weight:500; font-size:16px;
+      padding:12px 4px; border-bottom:1px solid var(--line);
+    }
+    .mobile-panel a:last-child{ border-bottom:0; }
+    .mobile-panel .btn-wa{ margin-top:12px; justify-content:center; }
+
+    /* =======================  HERO  ======================= */
+    .hero{
+      position:relative; overflow:hidden;
+      background:
+        radial-gradient(1200px 500px at 85% -10%, var(--navy-700), transparent 60%),
+        linear-gradient(160deg, var(--navy) 0%, #0C2E52 100%);
+      color:#fff;
+    }
+    .hero-grid{
+      display:grid; grid-template-columns:1.15fr .85fr;
+      align-items:center; gap:40px;
+      padding:76px 0 96px;
+    }
+
+    /* Baris label kecil di atas judul */
+    .eyebrow{
+      display:inline-flex; align-items:center; gap:12px;
+      font-family:"Barlow Condensed",sans-serif;
+      font-weight:600; letter-spacing:2px; text-transform:uppercase;
+      font-size:14px; color:#9FB4CC; margin-bottom:20px;
+    }
+    /* Badge tagline — lihat catatan strategi soal klaim "paling murah" */
+    .badge-murah{
+      background:rgba(246,168,33,.15);
+      border:1px solid rgba(246,168,33,.5);
+      color:var(--amber);
+      padding:4px 12px; border-radius:999px;
+      font-size:12px; letter-spacing:1px;
+    }
+
+    .hero h1{
+      font-family:"Barlow Condensed",sans-serif;
+      font-weight:700; text-transform:uppercase;
+      font-size:clamp(38px, 6vw, 68px);
+      line-height:.98; letter-spacing:.5px; margin:0 0 20px;
+    }
+    .hero h1 .hl{ color:var(--amber); }
+
+    .hero p.lede{
+      font-size:clamp(16px,1.6vw,19px);
+      line-height:1.6; color:#D6E1EF; max-width:52ch; margin:0 0 32px;
+    }
+
+    .cta-row{ display:flex; flex-wrap:wrap; gap:14px; margin-bottom:34px; }
+    .btn{
+      display:inline-flex; align-items:center; gap:10px;
+      font-weight:600; font-size:16px;
+      padding:15px 26px; border-radius:var(--radius);
+      transition:transform .15s ease, background .2s ease, border-color .2s ease;
+      cursor:pointer; border:none; font-family:inherit;
+    }
+    .btn-primary{ background:var(--amber); color:var(--navy); }
+    .btn-primary:hover{ background:#FFB733; transform:translateY(-2px); }
+    .btn-ghost{ border:1.5px solid rgba(255,255,255,.35); color:#fff; background:transparent; }
+    .btn-ghost:hover{ border-color:var(--amber); color:var(--amber); }
+    .btn-ghost-dark{ border:1.5px solid var(--line-dark); color:var(--navy); background:transparent; }
+    .btn-ghost-dark:hover{ border-color:var(--amber-600); color:var(--amber-600); }
+
+    /* Strip kepercayaan: nama mitra & klien nyata Anda */
+    .trust{ border-top:1px solid var(--line); padding-top:22px; }
+    .trust span{
+      display:block; font-size:12px; letter-spacing:2px;
+      text-transform:uppercase; color:#7E94AE; margin-bottom:10px;
+    }
+    .trust-logos{
+      display:flex; flex-wrap:wrap; gap:14px 26px;
+      font-family:"Barlow Condensed",sans-serif; font-weight:600;
+      font-size:18px; color:#B9C7D9; letter-spacing:.5px;
+    }
+
+    /* ---- SIGNATURE: garis rute Surabaya → Papua (SVG) ---- */
+    .route{ position:relative; min-height:320px; }
+    .route svg{ width:100%; height:auto; }
+    .dash{ stroke-dasharray:6 10; animation:flow 14s linear infinite; }
+    @keyframes flow{ to{ stroke-dashoffset:-320; } }
+    .node-label{
+      font-family:"Barlow Condensed",sans-serif; font-weight:700;
+      font-size:16px; letter-spacing:1px; fill:#fff; text-transform:uppercase;
+    }
+    .node-sub{ font-family:"Barlow",sans-serif; font-size:11px; fill:#9FB4CC; }
+
+    /* Hargai pengguna yang mematikan animasi */
+    @media (prefers-reduced-motion: reduce){
+      .dash{ animation:none; }
+      html{ scroll-behavior:auto; }
+    }
+
+    /* =======================  TENTANG KAMI  ======================= */
+    .about{ padding:96px 0; background:#fff; }
+    .about-grid{
+      display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start;
+    }
+    .about-stats{
+      display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:36px;
+    }
+    .stat{
+      border:1px solid var(--line-dark); border-radius:var(--radius);
+      padding:22px 20px;
+    }
+    .stat b{
+      display:block; font-family:"Barlow Condensed",sans-serif;
+      font-size:34px; font-weight:700; color:var(--navy); line-height:1;
+      margin-bottom:6px;
+    }
+    .stat span{ font-size:14px; color:#5B6B7D; }
+
+    .about-list{ list-style:none; margin:0; padding:0; display:grid; gap:16px; }
+    .about-list li{
+      display:flex; gap:14px; align-items:flex-start;
+      font-size:15.5px; line-height:1.6; color:#324053;
+    }
+    .about-list .ico{
+      flex:none; width:26px; height:26px; border-radius:7px;
+      background:var(--mist); color:var(--amber-600);
+      display:grid; place-items:center; font-weight:700; font-size:14px;
+      margin-top:2px;
+    }
+
+    /* =======================  LAYANAN  ======================= */
+    .services{ padding:96px 0; background:var(--mist); }
+    .service-grid{
+      display:grid; grid-template-columns:repeat(3, 1fr); gap:24px;
+    }
+    .service-card{
+      background:#fff; border-radius:var(--radius);
+      border:1px solid var(--line-dark);
+      padding:28px 26px; transition:transform .2s ease, box-shadow .2s ease;
+    }
+    .service-card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 16px 32px -20px rgba(10,37,64,.35);
+    }
+    .service-card .ico{
+      width:48px; height:48px; border-radius:10px;
+      background:linear-gradient(135deg,var(--navy),var(--navy-700));
+      color:var(--amber); display:grid; place-items:center;
+      font-family:"Barlow Condensed",sans-serif; font-weight:700; font-size:20px;
+      margin-bottom:18px;
+    }
+    .service-card h3{
+      font-family:"Barlow Condensed",sans-serif; text-transform:uppercase;
+      font-weight:700; font-size:20px; margin:0 0 10px; color:var(--navy);
+    }
+    .service-card p{ font-size:14.5px; line-height:1.6; color:#4B596A; margin:0; }
+
+    /* =======================  AREA & RUTE  ======================= */
+    .routes{ padding:96px 0; background:#fff; }
+    .route-grid{
+      display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+      gap:20px;
+    }
+    .route-card{
+      border:1px solid var(--line-dark); border-radius:var(--radius);
+      padding:24px; position:relative; overflow:hidden;
+    }
+    .route-card::before{
+      content:""; position:absolute; left:0; top:0; bottom:0; width:4px;
+      background:var(--amber);
+    }
+    .route-card .from-to{
+      font-family:"Barlow Condensed",sans-serif; font-weight:700;
+      font-size:19px; color:var(--navy); text-transform:uppercase;
+      margin:0 0 6px;
+    }
+    .route-card .from-to .arrow{ color:var(--amber-600); margin:0 6px; }
+    .route-card .modes{ font-size:13px; color:#5B6B7D; margin:0 0 12px; }
+    .route-card .eta{
+      display:inline-block; font-size:12.5px; font-weight:600;
+      background:var(--mist); color:var(--navy); padding:4px 10px;
+      border-radius:999px;
+    }
+
+    /* =======================  KLIEN KAMI  ======================= */
+    .clients{ padding:88px 0; background:var(--navy); color:#fff; }
+    .clients .section-head p{ color:#B9C7D9; }
+    .clients .section-head h2{ color:#fff; }
+    .client-grid{
+      display:grid; grid-template-columns:repeat(auto-fit, minmax(150px,1fr));
+      gap:18px;
+    }
+    .client-tile{
+      border:1px solid var(--line); border-radius:var(--radius);
+      padding:22px 16px; text-align:center;
+      font-family:"Barlow Condensed",sans-serif; font-weight:700;
+      font-size:18px; letter-spacing:.5px; color:#DCE6F2;
+      background:rgba(255,255,255,.03);
+    }
+
+    /* Testimoni singkat */
+    .testimonial{
+      margin-top:56px; border-top:1px solid var(--line); padding-top:40px;
+      display:grid; grid-template-columns:auto 1fr; gap:20px; align-items:flex-start;
+    }
+    .testimonial .quote-mark{
+      font-family:"Barlow Condensed",sans-serif; font-size:64px; font-weight:700;
+      color:var(--amber); line-height:1;
+    }
+    .testimonial blockquote{
+      margin:0 0 14px; font-size:18px; line-height:1.6; color:#E7EEF6; font-style:italic;
+    }
+    .testimonial cite{ font-style:normal; font-size:14px; color:#9FB4CC; }
+
+    /* =======================  KONTAK  ======================= */
+    .contact{ padding:96px 0; background:var(--mist); }
+    .contact-grid{
+      display:grid; grid-template-columns:1fr 1fr; gap:40px;
+    }
+    .contact-card{
+      background:#fff; border-radius:var(--radius);
+      border:1px solid var(--line-dark); padding:32px;
+    }
+    .contact-card h3{
+      font-family:"Barlow Condensed",sans-serif; text-transform:uppercase;
+      font-weight:700; font-size:22px; margin:0 0 18px; color:var(--navy);
+    }
+    .contact-row{
+      display:flex; gap:14px; align-items:flex-start;
+      padding:14px 0; border-bottom:1px solid var(--line-dark);
+    }
+    .contact-row:last-child{ border-bottom:0; }
+    .contact-row .ico{
+      flex:none; width:36px; height:36px; border-radius:9px;
+      background:var(--mist); color:var(--amber-600);
+      display:grid; place-items:center; font-weight:700;
+    }
+    .contact-row a, .contact-row span.txt{
+      font-size:15px; color:#324053; line-height:1.5;
+    }
+    .contact-row a:hover{ color:var(--amber-600); }
+    .contact-row .label{
+      display:block; font-size:12px; text-transform:uppercase;
+      letter-spacing:1px; color:#8592A2; margin-bottom:2px;
+    }
+
+    .cta-panel{
+      background:linear-gradient(160deg,var(--navy),var(--navy-700));
+      color:#fff; border-radius:var(--radius);
+      padding:32px; display:flex; flex-direction:column; justify-content:center;
+    }
+    .cta-panel h3{
+      font-family:"Barlow Condensed",sans-serif; text-transform:uppercase;
+      font-weight:700; font-size:24px; margin:0 0 12px;
+    }
+    .cta-panel p{ font-size:15px; color:#D6E1EF; line-height:1.6; margin:0 0 24px; }
+
+    /* =======================  FOOTER  ======================= */
+    .site-footer{
+      background:var(--navy); color:#9FB4CC; padding:36px 0;
+      border-top:1px solid var(--line);
+    }
+    .footer-row{
+      display:flex; flex-wrap:wrap; gap:16px; align-items:center;
+      justify-content:space-between; font-size:13.5px;
+    }
+    .footer-row a:hover{ color:#fff; }
+
+    /* =======================  RESPONSIVE  ======================= */
+    @media (max-width: 900px){
+      .menu, .site-header > .nav.wrap > .btn-wa{ display:none; }
+      .burger{ display:block; }
+      .hero-grid{ grid-template-columns:1fr; padding:56px 0 64px; }
+      .route{ order:-1; min-height:auto; max-width:440px; }
+
+      .about-grid, .contact-grid{ grid-template-columns:1fr; }
+      .service-grid{ grid-template-columns:1fr 1fr; }
+      .testimonial{ grid-template-columns:1fr; }
+    }
+    @media (max-width: 560px){
+      .service-grid{ grid-template-columns:1fr; }
+      .about-stats{ grid-template-columns:1fr 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ==========================  HEADER  ========================== -->
+  <header class="site-header">
+    <nav class="nav wrap" aria-label="Navigasi utama">
+      <a class="brand" href="#" aria-label="Beranda Fardana Group">
+        <span class="mark">F</span>
+        <span>Fardana Group<small>PT Fardana Berlian Papua</small></span>
+      </a>
+
+      <div class="menu">
+        <a href="#">Beranda</a>
+        <a href="#tentang">Tentang Kami</a>
+        <a href="#layanan">Layanan</a>
+        <a href="#rute">Area &amp; Rute</a>
+        <a href="#klien">Klien Kami</a>
+        <a href="#kontak">Kontak</a>
+      </div>
+
+      <!-- Ganti 62852... dengan nomor WhatsApp resmi Anda (format internasional, tanpa 0) -->
+      <a class="btn-wa" href="https://wa.me/6285232959995?text=Halo%20Fardana%20Group%2C%20saya%20ingin%20bertanya%20soal%20pengiriman"
+         target="_blank" rel="noopener">
+        ● WhatsApp
+      </a>
+
+      <button class="burger" aria-label="Buka menu" aria-expanded="false" aria-controls="mobile-panel">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <!-- Panel menu mobile -->
+    <div class="mobile-panel" id="mobile-panel">
+      <div class="wrap">
+        <a href="#">Beranda</a>
+        <a href="#tentang">Tentang Kami</a>
+        <a href="#layanan">Layanan</a>
+        <a href="#rute">Area &amp; Rute</a>
+        <a href="#klien">Klien Kami</a>
+        <a href="#kontak">Kontak</a>
+        <a class="btn-wa" href="https://wa.me/6285232959995?text=Halo%20Fardana%20Group%2C%20saya%20ingin%20bertanya%20soal%20pengiriman"
+           target="_blank" rel="noopener">● WhatsApp</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===========================  HERO  =========================== -->
+  <section class="hero">
+    <div class="hero-grid wrap">
+
+      <!-- Kolom kiri: pesan utama -->
+      <div class="hero-copy">
+        <div class="eyebrow">
+          Spesialis Papua &middot; Darat &amp; Laut
+          <span class="badge-murah">Dipercaya Paling Murah</span>
+        </div>
+
+        <h1>Kirim Kendaraan &amp;<br><span class="hl">Alat Berat</span> ke Papua,<br>Aman Sampai Tujuan.</h1>
+
+        <p class="lede">
+          PT Fardana Berlian Papua (Fardana Group) melayani pengiriman kendaraan,
+          alat berat, dan kargo ke seluruh Indonesia melalui jalur darat dan laut —
+          dari basis kami di Surabaya.
+        </p>
+
+        <div class="cta-row">
+          <a class="btn btn-primary"
+             href="https://wa.me/6285232959995?text=Halo%20Fardana%20Group%2C%20saya%20ingin%20minta%20penawaran%20pengiriman"
+             target="_blank" rel="noopener">
+            Chat via WhatsApp →
+          </a>
+          <a class="btn btn-ghost" href="mailto:official.fardana.berlian@gmail.com?subject=Permintaan%20Penawaran%20Pengiriman">
+            Minta Penawaran
+          </a>
+        </div>
+
+        <div class="trust">
+          <span>Dipercaya mitra &amp; klien</span>
+          <div class="trust-logos">
+            <span>PELNI</span><span>SPIL</span><span>TANTO</span>
+            <span>HONDA</span><span>TOYOTA</span><span>MITSUBISHI</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kolom kanan: SIGNATURE garis rute Surabaya → Papua -->
+      <div class="route" aria-hidden="true">
+        <svg viewBox="0 0 420 340" xmlns="http://www.w3.org/2000/svg">
+          <!-- garis rute melengkung -->
+          <path d="M70 250 C 150 120, 300 120, 360 80"
+                fill="none" stroke="rgba(159,180,204,.35)" stroke-width="2"/>
+          <path class="dash" d="M70 250 C 150 120, 300 120, 360 80"
+                fill="none" stroke="var(--amber)" stroke-width="2.5" stroke-linecap="round"/>
+
+          <!-- Titik Surabaya -->
+          <circle cx="70" cy="250" r="7" fill="var(--amber)"/>
+          <circle cx="70" cy="250" r="14" fill="none" stroke="var(--amber)" stroke-width="1.5" opacity=".4"/>
+          <text class="node-label" x="42" y="285">Surabaya</text>
+          <text class="node-sub"   x="42" y="300">Jawa Timur</text>
+
+          <!-- Titik Papua -->
+          <circle cx="360" cy="80" r="9" fill="#fff"/>
+          <circle cx="360" cy="80" r="9" fill="var(--amber)" opacity=".25"/>
+          <text class="node-label" x="300" y="52">Papua</text>
+          <text class="node-sub"   x="300" y="66">Tujuan utama</text>
+        </svg>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===========================  TENTANG KAMI  =========================== -->
+  <section class="about" id="tentang">
+    <div class="wrap about-grid">
+      <div>
+        <p class="kicker">Tentang Kami</p>
+        <h2>Ekspedisi yang Memahami<br>Medan Timur Indonesia</h2>
+        <p style="font-size:16px;line-height:1.7;color:#3E4A59;margin:0 0 22px;">
+          Fardana Group (PT Fardana Berlian Papua) berdiri sebagai jembatan logistik
+          antara pusat industri di Jawa dan kawasan timur Indonesia. Berbasis di
+          Surabaya, kami fokus pada pengiriman kendaraan dan alat berat yang butuh
+          penanganan khusus — mulai dari pengurusan dokumen, pemuatan di pelabuhan,
+          hingga pengawalan sampai titik tujuan di Papua.
+        </p>
+        <ul class="about-list">
+          <li><span class="ico">✓</span> Tim lapangan berpengalaman menangani alat berat & kendaraan niaga</li>
+          <li><span class="ico">✓</span> Jaringan kapal & mitra pelayaran di rute Surabaya–Papua</li>
+          <li><span class="ico">✓</span> Pelacakan status kiriman & komunikasi langsung via WhatsApp</li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="about-stats">
+          <div class="stat"><b>500+</b><span>Unit Terkirim</span></div>
+          <div class="stat"><b>15+</b><span>Rute Aktif</span></div>
+          <div class="stat"><b>98%</b><span>Tiba Tepat Waktu</span></div>
+          <div class="stat"><b>24/7</b><span>Respons WhatsApp</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===========================  LAYANAN  =========================== -->
+  <section class="services" id="layanan">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Layanan</p>
+        <h2>Solusi Pengiriman End-to-End</h2>
+        <p>Dari kendaraan pribadi hingga alat berat proyek, kami menangani setiap
+           tahap pengiriman dengan standar keamanan yang sama.</p>
+      </div>
+
+      <div class="service-grid">
+        <div class="service-card">
+          <div class="ico">01</div>
+          <h3>Kendaraan Pribadi & Niaga</h3>
+          <p>Pengiriman mobil, pickup, dan truk niaga dengan pengemasan &amp; pengikatan
+             standar pelayaran, siap dokumen lengkap.</p>
+        </div>
+        <div class="service-card">
+          <div class="ico">02</div>
+          <h3>Alat Berat & Proyek</h3>
+          <p>Excavator, dump truck, forklift, hingga genset — ditangani tim yang
+             paham prosedur muat-bongkar alat berat di pelabuhan.</p>
+        </div>
+        <div class="service-card">
+          <div class="ico">03</div>
+          <h3>Kargo Umum</h3>
+          <p>Barang proyek, material bangunan, dan kargo curah dikirim dalam
+             kontainer maupun kapal roro sesuai kebutuhan.</p>
+        </div>
+        <div class="service-card">
+          <div class="ico">04</div>
+          <h3>Jalur Darat</h3>
+          <p>Pengangkutan darat lintas kota untuk pengumpulan &amp; pengantaran
+             sebelum dan sesudah pelayaran.</p>
+        </div>
+        <div class="service-card">
+          <div class="ico">05</div>
+          <h3>Jalur Laut</h3>
+          <p>Kerja sama dengan mitra pelayaran nasional untuk rute Surabaya
+             menuju pelabuhan-pelabuhan utama Papua.</p>
+        </div>
+        <div class="service-card">
+          <div class="ico">06</div>
+          <h3>Pengurusan Dokumen</h3>
+          <p>Bantuan kelengkapan surat &amp; dokumen pengiriman agar proses di
+             pelabuhan berjalan lancar tanpa hambatan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===========================  AREA & RUTE  =========================== -->
+  <section class="routes" id="rute">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Area &amp; Rute</p>
+        <h2>Melayani Rute Utama Timur Indonesia</h2>
+        <p>Berbasis di Surabaya dengan jangkauan pengiriman ke kota-kota utama
+           di Papua dan sekitarnya. Rute lain di luar daftar tetap bisa didiskusikan.</p>
+      </div>
+
+      <div class="route-grid">
+        <div class="route-card">
+          <p class="from-to">Surabaya<span class="arrow">→</span>Jayapura</p>
+          <p class="modes">Jalur laut &middot; kapal roro/kontainer</p>
+          <span class="eta">Estimasi 7–10 hari</span>
+        </div>
+        <div class="route-card">
+          <p class="from-to">Surabaya<span class="arrow">→</span>Sorong</p>
+          <p class="modes">Jalur laut &middot; kapal roro/kontainer</p>
+          <span class="eta">Estimasi 5–8 hari</span>
+        </div>
+        <div class="route-card">
+          <p class="from-to">Surabaya<span class="arrow">→</span>Manokwari</p>
+          <p class="modes">Jalur laut &middot; kapal roro/kontainer</p>
+          <span class="eta">Estimasi 6–9 hari</span>
+        </div>
+        <div class="route-card">
+          <p class="from-to">Surabaya<span class="arrow">→</span>Merauke</p>
+          <p class="modes">Jalur laut &middot; kapal roro/kontainer</p>
+          <span class="eta">Estimasi 9–12 hari</span>
+        </div>
+        <div class="route-card">
+          <p class="from-to">Surabaya<span class="arrow">→</span>Timika</p>
+          <p class="modes">Jalur laut &middot; kapal roro/kontainer</p>
+          <span class="eta">Estimasi 7–10 hari</span>
+        </div>
+        <div class="route-card">
+          <p class="from-to">Surabaya<span class="arrow">→</span>Biak</p>
+          <p class="modes">Jalur laut &middot; kapal roro/kontainer</p>
+          <span class="eta">Estimasi 7–10 hari</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===========================  KLIEN KAMI  =========================== -->
+  <section class="clients" id="klien">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Klien Kami</p>
+        <h2>Dipercaya Mitra &amp; Perusahaan Nasional</h2>
+        <p>Bekerja sama dengan perusahaan pelayaran dan produsen kendaraan
+           dalam mendukung distribusi ke wilayah timur Indonesia.</p>
+      </div>
+
+      <div class="client-grid">
+        <div class="client-tile">PELNI</div>
+        <div class="client-tile">SPIL</div>
+        <div class="client-tile">TANTO</div>
+        <div class="client-tile">HONDA</div>
+        <div class="client-tile">TOYOTA</div>
+        <div class="client-tile">MITSUBISHI</div>
+      </div>
+
+      <div class="testimonial">
+        <span class="quote-mark">&ldquo;</span>
+        <div>
+          <blockquote>
+            Fardana Group konsisten mengirim unit alat berat kami ke Papua tepat
+            waktu dan dalam kondisi baik. Komunikasi via WhatsApp juga cepat direspons.
+          </blockquote>
+          <cite>— Klien proyek konstruksi, Surabaya</cite>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===========================  KONTAK  =========================== -->
+  <section class="contact" id="kontak">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">Kontak</p>
+        <h2>Siap Membantu Pengiriman Anda</h2>
+        <p>Hubungi kami untuk konsultasi rute, estimasi biaya, dan jadwal
+           keberangkatan terdekat.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>Informasi Kontak</h3>
+          <div class="contact-row">
+            <span class="ico">☎</span>
+            <a href="https://wa.me/6285232959995?text=Halo%20Fardana%20Group%2C%20saya%20ingin%20bertanya%20soal%20pengiriman" target="_blank" rel="noopener">
+              <span class="label">WhatsApp</span>+62 852-3295-9995
+            </a>
+          </div>
+          <div class="contact-row">
+            <span class="ico">✉</span>
+            <a href="mailto:official.fardana.berlian@gmail.com">
+              <span class="label">Email</span>official.fardana.berlian@gmail.com
+            </a>
+          </div>
+          <div class="contact-row">
+            <span class="ico">⌂</span>
+            <span class="txt"><span class="label">Kantor</span>Surabaya, Jawa Timur, Indonesia</span>
+          </div>
+          <div class="contact-row">
+            <span class="ico">⏱</span>
+            <span class="txt"><span class="label">Jam Operasional</span>Senin–Sabtu, 08.00–17.00 WIB</span>
+          </div>
+        </div>
+
+        <div class="cta-panel">
+          <h3>Butuh Estimasi Biaya Cepat?</h3>
+          <p>Kirim detail kendaraan atau alat berat Anda via WhatsApp, tim kami
+             akan membalas dengan estimasi biaya &amp; jadwal keberangkatan.</p>
+          <a class="btn btn-primary" style="justify-content:center;"
+             href="https://wa.me/6285232959995?text=Halo%20Fardana%20Group%2C%20saya%20ingin%20minta%20estimasi%20biaya%20pengiriman"
+             target="_blank" rel="noopener">
+            Chat Sekarang via WhatsApp →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===========================  FOOTER  =========================== -->
+  <footer class="site-footer">
+    <div class="wrap footer-row">
+      <span>&copy; <span id="year">2026</span> PT Fardana Berlian Papua (Fardana Group). Seluruh hak cipta dilindungi.</span>
+      <a href="mailto:official.fardana.berlian@gmail.com">official.fardana.berlian@gmail.com</a>
+    </div>
+  </footer>
+
+  <script>
+    // Toggle menu mobile
+    var burger = document.querySelector('.burger');
+    var panel = document.getElementById('mobile-panel');
+    burger.addEventListener('click', function(){
+      var isOpen = panel.classList.toggle('open');
+      burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+    panel.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        panel.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
